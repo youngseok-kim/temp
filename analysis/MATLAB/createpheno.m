@@ -53,19 +53,19 @@ b(i) = randn(na,1);
   
 % Adjust the additive effects so that we control for (1) the proportion of
 % additive genetic variance that is due to QTL effects ("d"), and (2) the
-% proportion of variance explained ("r"). That is, we adjust b and u so
-% that
+% proportion of variance explained by all genetic & population factors
+% ("r"). That is, we adjust b and u so that
 %
 %   r = a/(a+1)
-%   d = b/a,
+%   d = c/a,
 %
 % where I've defined 
 %
-%   a = (u + b)' * cov(X) * (u + b),
-%   b = b' * COV(X) * b.
+%   a = [u; b]' * cov([Z X]) * [u; b],
+%   c = b' * cov(X) * b.
 %
 % -----
-% TO DO: Double check this code.
+% TO DO: Fix this code.
 % -----
 %
 if d == 0 | d == 1
