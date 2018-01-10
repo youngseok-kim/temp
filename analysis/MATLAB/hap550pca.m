@@ -7,7 +7,7 @@ rng(1);
 
 % LOAD GENOTYPE AND PHENOTYPE DATA.
 fprintf('Loading genotype data.\n');
-load('/tmp/pcarbo/hap550.mat');
+load('../data/hap550.mat');
 p = length(pos);
 
 % Center the columns of the genotype matrix so that each column has a mean
