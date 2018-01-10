@@ -24,8 +24,7 @@ for i = 1:3
   samples = find(study == i);
   I       = [I; samples(randperm(length(samples),1000))];
 end
-study = study(I);
-Xsub  = X(I,:);
+Xsub = X(I,:);
 
 % Compute the first m PCs.
 fprintf('Calculating first 10 principal components.\n');
@@ -36,9 +35,9 @@ clear Xsub
 % Project all the samples onto the PCs.
 pc = X * R;
 
-% Create a new MAT file containing the genotype data and the PCA results.
-fprintf('Saving genotype data and PCA results to file.\n');
-save('hap550_new.mat','X','chr','pos','study','R','pc','-v7.3');
+% Create a new MAT file containing the PCA results.
+fprintf('Saving PCA results to file.\n');
+save('hap550_pc.mat','study','R','pc','-v7.3');
 
 % Plot the samples projected onto the first two PCs. The first PC
 % separates samples in Study 3 (blue) from studies 1 & 2 (orange & red).
