@@ -36,7 +36,7 @@ X       = double(X);
 pc = X * R;
 
 % Create a new MAT file containing the genotype data and the PCA results.
-save('dat.mat','X','chr','pos','study','R','pc','-v7.3');
+save('hap550_new.mat','X','chr','pos','study','R','pc','-v7.3');
 
 % Plot the samples projected onto the first two PCs. The first PC
 % separates samples in Study 2 (blue) from studies 1 & 3 (orange & red).
