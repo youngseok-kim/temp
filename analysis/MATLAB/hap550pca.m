@@ -37,7 +37,7 @@ pc = X * R;
 
 % Create a new MAT file containing the PCA results.
 fprintf('Saving PCA results to file.\n');
-save('hap550_pc.mat','study','R','pc','-v7.3');
+save('hap550_pc.mat','study','pc','-v7.3');
 
 % Plot the samples projected onto the first two PCs. The first PC
 % separates samples in Study 3 (blue) from studies 1 & 2 (orange & red).
