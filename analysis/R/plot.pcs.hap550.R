@@ -9,10 +9,10 @@ study <- out[["study"]][,]
 pc    <- out[["pc"]][,]
 
 # Plot the samples projected onto PCs 1 and 2.
-dat        <- as.data.frame(cbind(factor(study),pc))
+dat        <- cbind(factor(study),as.data.frame(pc))
 names(dat) <- c("study",paste0("PC",1:10))
-ggplot(dat,aes(x = PC1,y = PC2,color = study,shape = study)) +
+p <- ggplot(dat,aes(x = PC1,y = PC2,color = study,shape = study)) +
   geom_point(size = 2) +
   scale_color_manual(values = c("dodgerblue","darkorange","forestgreen")) +
   scale_shape_manual(values = c(19,17,8))
-
+print(p)
