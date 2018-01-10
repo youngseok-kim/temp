@@ -3,3 +3,9 @@ directory. Large data files should not be added to the git repository.
 
 Large data files are currently being stored in directory ~pcarbo/ldsr
 on the PPS cluster.
+
+Contents of this directory:
+
+  hap550_pc.mat    Top 10 PCs computed from genotypes.
+  hap550_pc.png    Plot of PCs 1 & 2.
+
