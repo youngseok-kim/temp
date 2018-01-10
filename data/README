@@ -1,3 +1,5 @@
 Input data files, or links to those files, should be copied to this
 directory. Large data files should not be added to the git repository.
 
+Large data files are currently being stored in directory ~pcarbo/ldsr
+on the PPS cluster.
