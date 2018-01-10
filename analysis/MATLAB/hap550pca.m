@@ -5,7 +5,7 @@ clear
 % Initialize the random number generator.
 rng(1);
 
-% LOAD GENOTYPE AND PHENOTYPE DATA.
+% LOAD GENOTYPE DATA.
 fprintf('Loading genotype data.\n');
 load('../../data/hap550.mat');
 p = length(pos);
