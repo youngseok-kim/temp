@@ -7,7 +7,7 @@ rng(1);
 
 % LOAD GENOTYPE AND PHENOTYPE DATA.
 fprintf('Loading genotype data.\n');
-load('../data/hap550.mat');
+load('/tmp/pcarbo/hap550.mat');
 p = length(pos);
 
 % Center the columns of the genotype matrix so that each column has a mean
@@ -34,6 +34,7 @@ clear Xsub
 
 % Project all the samples onto the PCs.
 pc = X * R;
+pc = double(pc);
 
 % Create a new MAT file containing the PCA results.
 fprintf('Saving PCA results to file.\n');
