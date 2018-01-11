@@ -92,8 +92,17 @@ y = Z*u + X*b + randn(n,1);
 % Center the phenotype.
 y = y - mean(y);
 
-% SAVE PHENOTYPE DATA TO FILE
-% ---------------------------
-fprintf('Saving phenotype data.\n')
+% SAVE PHENOTYPE DATA TO MAT FILE
+% -------------------------------
+fprintf('Saving phenotype data to MAT file.\n');
 simparams = struct('r',r,'d',d,'na',na,'u',u,'b',b);
 save('hap550_pheno.mat','y','simparams','-v7.3');
+
+% SAVE PHENOTYPE DATA TO .fam FILE
+% --------------------------------
+fprintf('Saving phenotype data to .fam file.\n');
+f = fopen('hap550.fam','w');
+for i = 1:n
+  fprintf(f,'1 %s 0 0 0 %0.6f\n',id{i},y(i));
+end
+fclose(f);
