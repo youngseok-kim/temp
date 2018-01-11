@@ -1,9 +1,10 @@
-% TO DO: Explain here what this script does, and how to use it.
+% Simulate a quantitative trait as a linear combination of SNP genotypes and
+% population factors (e.g., estimated using principal components) plus
+% Gaussian noise. The script parameters r and d control proportion of
+% variance in the phenotype explained by genotypes and population factors.
 %
-% NOTES: 
-%
-%  - Adjust definition of Z as needed.
-%
+% The population factors are stored in matrix Z, and this can be adjusted
+% as needed.
 clear
 
 % SCRIPT PARAMETERS
@@ -83,6 +84,7 @@ sa = max(roots2(var(zu,1),...
                 2*dot(xb,zu)/n,...
                 var(xb,1) - r/(1-r)))^2;
 u  = sqrt(sa) * u;
+clear zu xb
 
 % Generate the quantitative trait measurements.
 y = Z*u + X*b + randn(n,1);
@@ -93,4 +95,5 @@ y = y - mean(y);
 % SAVE PHENOTYPE DATA TO FILE
 % ---------------------------
 fprintf('Saving phenotype data.\n')
-save('hap550_pc.mat','study','pc','v','-v7.3');
+simparams = struct('r',r,'d',d,'na',na,'u',u,'b',b);
+save('hap550_pheno.mat','y','simparams','-v7.3');

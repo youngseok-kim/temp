@@ -8,4 +8,5 @@ Contents of this directory:
 
   hap550_pc.mat    Top 10 PCs computed from genotypes.
   hap550_pc.png    Plot of PCs 1 & 2.
+  hap550_pheno.mat Example simulated phenotype generated from createpheno.m.
 
