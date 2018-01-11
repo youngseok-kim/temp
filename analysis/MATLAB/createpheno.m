@@ -1,4 +1,9 @@
 % TO DO: Explain here what this script does, and how to use it.
+%
+% NOTES: 
+%
+%  - Adjust definition of Z as needed.
+%
 clear
 
 % SCRIPT PARAMETERS
@@ -26,7 +31,7 @@ rng(1);
 
 % DATA PRE-PROCESSING STEPS
 % -------------------------
-% Center the columns of Z.
+% Center the population covariates (columns of Z).
 m = size(Z,2);
 Z = Z - repmat(mean(Z),m,1);
 
@@ -40,41 +45,43 @@ end
 
 % SIMULATE PHENOTYPE ATA
 % ----------------------
+fprintf('Simulating phenotype data.\n');
+
 % Here we assume the population factors all have the same effect and in
 % the same direction.
-fprintf('Simulating phenotype data.\n');
 u = ones(m,1);
 
-% Generate effects for the causal SNPs.
+% Generate effects for the causal SNPs; the effects for the non-causal SNPs
+% are all set to zero.
 i    = randperm(p);
 i    = i(1:na);
 b    = zeros(p,1);
 b(i) = randn(na,1);
   
-% Adjust the additive effects so that we control for (1) the proportion of
-% additive genetic variance that is due to QTL effects ("d"), and (2) the
-% proportion of variance explained by all genetic & population factors
-% ("r"). That is, we adjust b and u so that
+% Adjust the additive effects of the population factors and the SNPs so that
+% we control for (1) the proportion of additive genetic variance that is due
+% to SNPs ("d"), and (2) the proportion of variance explained by all genetic
+% & population factors ("r"). That is, we adjust vectors b and u so that
 %
 %   r = a/(a+1)
 %   d = c/a,
 %
 % where I've defined 
 %
-%   a = [u; b]' * cov([Z X]) * [u; b],
-%   c = b' * cov(X) * b.
-%
-% -----
-% TO DO: Fix this code.
-% -----
+%   a = [u; b]'*cov([Z X])*[u; b],
+%   c = b'*cov(X)*b.
 %
 if d == 0 | d == 1
-  error('d cannot be exactly 0 or exactly 1')
+  error('d cannot be exactly 0 or exactly 1');
 end
 n  = length(id);
 st = r/(1-r) * d/var(X*b,1);
 b  = sqrt(st) * b;
-sa = max(roots2(var(Z*u,1),2*dot(X*b,Z*u)/n,var(X*b,1) - r/(1-r)))^2;
+zu = Z*u;
+xb = X*b;
+sa = max(roots2(var(zu,1),...
+                2*dot(xb,zu)/n,...
+                var(xb,1) - r/(1-r)))^2;
 u  = sqrt(sa) * u;
 
 % Generate the quantitative trait measurements.
@@ -86,4 +93,4 @@ y = y - mean(y);
 % SAVE PHENOTYPE DATA TO FILE
 % ---------------------------
 fprintf('Saving phenotype data.\n')
-% TO DO.
+save('hap550_pc.mat','study','pc','v','-v7.3');
