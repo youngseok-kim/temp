@@ -17,9 +17,9 @@ for (( i=1 ; i <= 22 ; i++ )); do
   echo "chromosome ${i}"
 
   # Extract the genotypes on the chromosome.
-  $PLINK --bfile hap550 --chr $i --make-bed > plink.out
+  $PLINK --bfile hap550 --chr ${i} --make-bed > plink.out
 
   # Estimate univariate LD scores for all SNPs on the chromosome.
   $PYTHON $LDSC --bfile plink --l2 --ld-wind-kb 100 \
-    --out ldsc_${i} > ldsc_${i}.out
+      --out ldsc_${i} > ldsc_${i}.out
 done
