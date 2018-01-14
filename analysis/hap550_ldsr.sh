@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Estimate LD scores from the hap550 data set, separately for each
-# chromosome. The LD scores are stored in files ldsc_*.l2.ldscore.gz.
+# chromosome. The LD scores are stored in files ldsc_*.l2.ldscore.gz,
+# and the console output for each run of the LDSC program is stored in
+# files ldsc_*.out.
 
 # These settings should work on the PPS cluster (for an updated node
 # such as spudling21). Please adjust these settings as needed to suit
