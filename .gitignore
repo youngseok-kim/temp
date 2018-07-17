@@ -1,1 +1,4 @@
 data/hap550.mat
+code/1kg.rds
+.gitignore
+code/label.lkg.txt
