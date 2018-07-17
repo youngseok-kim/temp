@@ -1,4 +1,5 @@
 data/hap550.mat
 code/1kg.rds
 .gitignore
-code/label.lkg.txt
+code/label.1kg.txt
+code/.DS_Store
